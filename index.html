@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desenvolvimento Web — Semana 05</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f4f5f7; color: #242b33; font-family: Arial, sans-serif; line-height: 1.6; }
+    main { max-width: 760px; margin: 40px auto; padding: 0 20px; }
+    h1 { font-size: 1.7rem; margin-bottom: 4px; }
+    h2 { font-size: 1.25rem; margin-top: 0; }
+    h3 { font-size: 1rem; }
+    header p { margin-top: 0; color: #555; }
+    section { margin-top: 24px; padding: 24px; border: 1px solid #d9dde2; border-radius: 6px; background: white; }
+    label { display: block; margin-bottom: 6px; font-weight: bold; }
+    .campos { display: flex; gap: 10px; }
+    input { flex: 1; min-width: 0; padding: 10px; border: 1px solid #8b949e; border-radius: 4px; font: inherit; }
+    button { padding: 10px 18px; border: 0; border-radius: 4px; background: #245c93; color: white; font: inherit; cursor: pointer; }
+    button:hover { background: #194572; }
+    button:disabled { opacity: .6; cursor: wait; }
+    input:focus-visible, button:focus-visible { outline: 3px solid #bd7900; outline-offset: 3px; }
+    .aviso { min-height: 1.6em; margin: 12px 0 0; }
+    small { display: block; margin-top: 6px; color: #555; }
+    dl { display: grid; grid-template-columns: 80px 1fr; gap: 8px 12px; }
+    dl:empty { display: none; }
+    dt { font-weight: bold; }
+    dd { margin: 0; overflow-wrap: anywhere; }
+    ul { padding-left: 22px; }
+    #resultado-pokemon img { display: block; width: 120px; height: 120px; image-rendering: pixelated; }
+    #resultado-pokemon h3 { text-transform: capitalize; }
+    @media (max-width: 420px) {
+      main { margin: 24px auto; padding: 0 12px; }
+      section { padding: 18px; }
+      .campos { flex-direction: column; }
+    }
+  </style>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Desenvolvimento Web — Semana 05</h1>
+      <p>Objetos, dados e assincronismo</p>
+    </header>
+
+    <section aria-labelledby="titulo-pedidos">
+      <h2 id="titulo-pedidos">Pedidos pagos</h2>
+      <p>Pedidos válidos com pagamento confirmado.</p>
+      <ul id="lista-pedidos"></ul>
+      <p id="total-pedidos"></p>
+    </section>
+
+    <section aria-labelledby="titulo-cep">
+      <h2 id="titulo-cep">Buscador de CEP</h2>
+      <form id="form-cep" novalidate>
+        <label for="cep">CEP</label>
+        <div class="campos">
+          <input id="cep" name="cep" type="text" inputmode="numeric" autocomplete="postal-code" placeholder="01001000" aria-describedby="ajuda-cep status-cep">
+          <button id="botao-cep" type="submit">Buscar</button>
+        </div>
+        <small id="ajuda-cep">Digite os 8 números do CEP, com ou sem hífen.</small>
+      </form>
+      <p id="status-cep" class="aviso" role="status"></p>
+      <dl id="resultado-cep" aria-live="polite"></dl>
+      <h3>Histórico de CEPs consultados</h3>
+      <p id="historico-vazio">Nenhum CEP consultado nesta sessão.</p>
+      <ul id="historico-cep"></ul>
+    </section>
+
+    <section aria-labelledby="titulo-pokemon">
+      <h2 id="titulo-pokemon">Mini Pokédex</h2>
+      <form id="form-pokemon" novalidate>
+        <label for="pokemon">Nome do Pokémon</label>
+        <div class="campos">
+          <input id="pokemon" name="pokemon" type="text" placeholder="pikachu" autocapitalize="none" spellcheck="false" aria-describedby="status-pokemon">
+          <button id="botao-pokemon" type="submit">Buscar</button>
+        </div>
+      </form>
+      <p id="status-pokemon" class="aviso" role="status"></p>
+      <div id="resultado-pokemon" aria-live="polite"></div>
+    </section>
+  </main>
+</body>
+</html>
